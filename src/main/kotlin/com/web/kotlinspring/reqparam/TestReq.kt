@@ -1,6 +1,5 @@
 package com.web.kotlinspring.reqparam
 
-class TestReq:BaseReqParam(){
-    lateinit var username:String
-    lateinit var password:String
-}
+data class TestReq(val username:String, val password:String?)
+
+data class UserReq(val username:String,val phone:String?,val email:String?)
