@@ -1,19 +1,16 @@
 package com.web.kotlinspring.controller
 
-import org.springframework.http.MediaType
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.beans.factory.annotation.Autowired
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
-@RestController
-@RequestMapping("/base")
-class BaseController
+open class BaseController{
 
-    @RequestMapping(value = "/hello",method = [RequestMethod.GET],produces = [MediaType.APPLICATION_JSON_UTF8_VALUE])
-    @ResponseBody
-    fun hello():String {
-        return "success";
-    }
+    @Autowired
+    protected lateinit var request: HttpServletRequest
 
+    @Autowired
+    protected lateinit var response: HttpServletResponse
+
+}
 
