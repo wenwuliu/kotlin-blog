@@ -139,4 +139,8 @@
       delete_flag = #{deleteFlag,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectByUserName" resultMap="BaseResultMap">
+    select * from user where user_name = #{username}
+  </select>
 </mapper>

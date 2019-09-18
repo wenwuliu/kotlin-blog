@@ -7,4 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserDAO extends BaseDAO<User, UserMapper> {
+    public User selectByUserName(String username) {
+        return mapper.selectByUserName(username);
+    }
 }

@@ -20,14 +20,14 @@ public abstract class BaseDAO<E,K extends BaseMapper<E>> {
     }
 
     public E selectByPrimaryKey(String id){
-        return selectByPrimaryKey(id);
+        return mapper.selectByPrimaryKey(id);
     }
 
     public int updateByPrimaryKeySelective(E record){
-        return updateByPrimaryKeySelective(record);
+        return mapper.updateByPrimaryKeySelective(record);
     }
 
     public int updateByPrimaryKey(E record){
-        return updateByPrimaryKey(record);
+        return mapper.updateByPrimaryKey(record);
     }
 }
