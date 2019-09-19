@@ -41,7 +41,7 @@ public class ArticleController extends BaseController{
         return ResponseEntity.failed(RespCodeEnum.DEALFAILED);
     }
 
-    @RequestMapping(value = "/editArticle")
+    @RequestMapping(value = "/editArticle",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity editArticle(String title,String content,String desc,String articleId){
         if(StringUtils.isEmpty(title)){

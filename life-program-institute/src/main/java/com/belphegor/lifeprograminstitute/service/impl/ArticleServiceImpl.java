@@ -1,7 +1,5 @@
 package com.belphegor.lifeprograminstitute.service.impl;
 
-import com.belphegor.common.entity.ResponseEntity;
-import com.belphegor.common.enums.RespCodeEnum;
 import com.belphegor.common.utils.CommonUtils;
 import com.belphegor.lifeprograminstitute.dao.ArticleDAO;
 import com.belphegor.lifeprograminstitute.dao.UserSkillDAO;
