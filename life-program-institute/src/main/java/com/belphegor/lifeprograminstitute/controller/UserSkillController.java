@@ -22,20 +22,16 @@ public class UserSkillController extends BaseController{
     @RequestMapping(value = "/addSkill",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity addSkills(String skillId,String skillName){
-        ResponseEntity responseEntity;
         if (StringUtils.isEmpty(skillName)){
-            responseEntity = ResponseEntity.failed(RespCodeEnum.INVALIDPARAM);
-        }else {
+            return ResponseEntity.failed(RespCodeEnum.INVALIDPARAM);
+        }
              Skill skill = new Skill();
              skill.setSkillId(skillId);
              skill.setSkillName(skillName);
              boolean success = skillService.addSkill(skill,user);
              if(success){
-                 responseEntity = ResponseEntity.success();
-             }else {
-                 responseEntity = ResponseEntity.failed(RespCodeEnum.DEALFAILED);
+                 return ResponseEntity.success();
              }
-        }
-        return responseEntity;
+             return ResponseEntity.failed(RespCodeEnum.DEALFAILED);
     }
 }
