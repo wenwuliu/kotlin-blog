@@ -1,5 +1,7 @@
 package com.belphegor.common.entity;
 
+import com.belphegor.common.enums.RespCodeEnum;
+
 import java.io.Serializable;
 
 public class ResponseEntity implements Serializable {
@@ -34,9 +36,32 @@ public class ResponseEntity implements Serializable {
 
     public static ResponseEntity success(Object data){
         ResponseEntity responseEntity = new ResponseEntity();
-        responseEntity.code = 0;
-        responseEntity.message = "success";
+        responseEntity.code = RespCodeEnum.SUCCESS.getCode();
+        responseEntity.message = RespCodeEnum.SUCCESS.getMessage();
         responseEntity.data = data;
         return responseEntity;
     }
+
+    public static ResponseEntity success(){
+        ResponseEntity responseEntity = new ResponseEntity();
+        responseEntity.code = RespCodeEnum.SUCCESS.getCode();
+        responseEntity.message = RespCodeEnum.SUCCESS.getMessage();
+        return responseEntity;
+    }
+
+    public static ResponseEntity failed(RespCodeEnum respCodeEnum,Object o){
+        ResponseEntity responseEntity = new ResponseEntity();
+        responseEntity.code = respCodeEnum.getCode();
+        responseEntity.message = respCodeEnum.getMessage();
+        responseEntity.data = o;
+        return responseEntity;
+    }
+
+    public static ResponseEntity failed(RespCodeEnum respCodeEnum){
+        ResponseEntity responseEntity = new ResponseEntity();
+        responseEntity.code = respCodeEnum.getCode();
+        responseEntity.message = respCodeEnum.getMessage();
+        return responseEntity;
+    }
+
 }

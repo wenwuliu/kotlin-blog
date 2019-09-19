@@ -16,11 +16,11 @@
     select 
     <include refid="Base_Column_List" />
     from skill
-    where skill_name = #{id,jdbcType=VARCHAR}
+    where skill_id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from skill
-    where skill_name = #{id,jdbcType=VARCHAR}
+    where skill_id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.belphegor.lifeprograminstitute.entity.Skill">
     insert into skill (skill_name, skill_id, skill_desc, 

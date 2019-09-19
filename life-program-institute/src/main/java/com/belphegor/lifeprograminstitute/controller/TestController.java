@@ -16,8 +16,6 @@ public class TestController {
 
     private static final Logger log = LoggerFactory.getLogger(TestController.class);
 
-    @Autowired
-    UserDAO userDAO;
 
     @RequestMapping("/hello")
     @ResponseBody
