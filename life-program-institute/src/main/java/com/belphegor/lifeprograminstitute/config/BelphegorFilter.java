@@ -43,7 +43,7 @@ public class BelphegorFilter implements Filter {
         response.setContentType("application/json; charset=utf-8");
         String token = request.getHeader("token");
 
-        if("/login".equals(request.getRequestURI()) || "/register".equals(request.getRequestURI())){
+        if("/belphegor/login".equals(request.getRequestURI()) || "/belphegor/register".equals(request.getRequestURI())){
             filterChain.doFilter(servletRequest,servletResponse);
             return;
         }

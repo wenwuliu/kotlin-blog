@@ -24,3 +24,6 @@ blog(id,article_name,user_skill_id,article_content)
 ```统计技能，形成游戏个人属性页，激励加成```
 
 大雾
+
+工具：像素风绘图软件
+https://www.pixilart.com/draw

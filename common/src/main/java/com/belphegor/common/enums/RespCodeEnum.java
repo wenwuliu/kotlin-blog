@@ -2,6 +2,7 @@ package com.belphegor.common.enums;
 
 public enum RespCodeEnum {
     SUCCESS(0,"处理成功"),
+    LOGINFAILED(-4,"登录失败"),
     UNAUTHORIZED(-1,"token验证失败"),
     INVALIDPARAM(-2,"参数校验失败"),
     DEALFAILED(-3,"处理失败");

@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@RequestMapping(value = "/belphegor",produces = "application/json;charset=UTF-8")
 public class GateWayController {
     private static final Logger log = LoggerFactory.getLogger(GateWayController.class);
 
@@ -24,13 +25,13 @@ public class GateWayController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity hello(String username,String password){
         ResponseEntity responseEntity;
         User u = userService.getUserByUsername(username);
         if(u == null || !u.getPassword().equals(password)){
-            responseEntity = ResponseEntity.failed(RespCodeEnum.UNAUTHORIZED);
+            responseEntity = ResponseEntity.failed(RespCodeEnum.LOGINFAILED);
         }else {
             String token = TokenUtils.generateToken(username);
             Map<String,Object> map = new HashMap<>();
