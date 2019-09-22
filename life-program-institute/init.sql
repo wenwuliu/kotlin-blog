@@ -11,7 +11,7 @@ create table `user`(
     password varchar(32) not null,
     delete_flag int default 0,
     primary key (user_id)
-);
+)engine InnoDB default charset utf8;
 
 create table `user_skill`(
     user_skill_id varchar(32) not null,
@@ -22,7 +22,7 @@ create table `user_skill`(
     update_time timestamp default current_timestamp on update current_timestamp ,
     delete_flag int default 0,
     primary key (user_skill_id)
-);
+)engine InnoDB default charset utf8;
 
 create table `skill`(
     skill_id varchar(32) not null,
@@ -32,7 +32,7 @@ create table `skill`(
     update_time timestamp default current_timestamp on update current_timestamp ,
     delete_flag int default 0,
     primary key(skill_name)
-);
+)engine InnoDB default charset utf8;
 
 create table `article`(
     article_id varchar(32) not null,
@@ -44,4 +44,4 @@ create table `article`(
     update_time timestamp default current_timestamp on update current_timestamp ,
     delete_flag int default 0,
     primary key (article_id)
-);
+)engine InnoDB default charset utf8;

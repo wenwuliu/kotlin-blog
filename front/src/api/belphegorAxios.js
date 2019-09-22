@@ -54,10 +54,12 @@ axios.interceptors.response.use(
         return Promise.reject(entity)
       }
     } else {
+      Message.error("请求错误")
       return Promise.reject(response)
     }
   },
   error => {
+    Message.error("网络连接错误")
     return Promise.reject(error)
   }
 )

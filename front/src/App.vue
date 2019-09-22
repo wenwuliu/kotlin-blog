@@ -23,7 +23,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background:linear-gradient(to right top,#ADCCBD,#576A9C)
 }
 #nav {
   padding: 30px;

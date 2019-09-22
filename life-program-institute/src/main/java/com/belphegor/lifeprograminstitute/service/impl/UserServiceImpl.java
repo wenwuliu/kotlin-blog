@@ -31,4 +31,8 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Override
+    public int addUser(User newAccount) {
+        return userDAO.insertSelective(newAccount);
+    }
 }

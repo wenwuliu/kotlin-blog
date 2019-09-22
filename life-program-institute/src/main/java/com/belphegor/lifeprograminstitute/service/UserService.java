@@ -8,4 +8,5 @@ public interface UserService {
 
     public boolean validateUser(User user);
 
+    int addUser(User newAccount);
 }

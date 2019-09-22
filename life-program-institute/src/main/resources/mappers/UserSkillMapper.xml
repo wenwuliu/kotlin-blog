@@ -114,4 +114,9 @@
       delete_flag = #{deleteFlag,jdbcType=INTEGER}
     where user_skill_id = #{userSkillId,jdbcType=VARCHAR}
   </update>
+  <select id="selectByUserId" resultType="com.belphegor.lifeprograminstitute.dto.SkillDTO">
+    select us.user_skill_id as userSkillId,s.skill_name as skillName,s.skill_desc as skillDesc,us.exp as exp
+    from user_skill us left join skill s on s.skill_id = us.skill_id
+    where us.user_id = #{userId}
+  </select>
 </mapper>

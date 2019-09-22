@@ -34,16 +34,22 @@ public class SkillServiceImpl implements SkillService {
         if(!userService.validateUser(user)){
             return false;
         }
-        if(skill.getSkillId() != null){
-            UserSkill userSkill = new UserSkill();
-            userSkill.setExp(0);
-            userSkill.setSkillId(skill.getSkillId());
-            userSkill.setUserId(user.getUserId());
-            userSkill.setUserSkillId(CommonUtils.getUUID());
-            int success = userSkillDAO.insert(userSkill);
-            if(success > 0){
-                return true;
+        if(skill.getSkillId() == null){
+            skill.setSkillId(CommonUtils.getUUID());
+            int success = skillDAO.insert(skill);
+            if(success <= 0){
+                return false;
             }
+        }
+
+        UserSkill userSkill = new UserSkill();
+        userSkill.setExp(0);
+        userSkill.setSkillId(skill.getSkillId());
+        userSkill.setUserId(user.getUserId());
+        userSkill.setUserSkillId(CommonUtils.getUUID());
+        int success = userSkillDAO.insert(userSkill);
+        if(success > 0){
+            return true;
         }
         return false;
     }
