@@ -8,6 +8,8 @@ public class Article implements Serializable {
 
     private String articleName;
 
+    private String userId;
+
     private String userSkillId;
 
     private String articleDesc;
@@ -20,7 +22,7 @@ public class Article implements Serializable {
 
     private String articleContent;
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -1067960768389608204L;
 
     public String getArticleId() {
         return articleId;
@@ -36,6 +38,15 @@ public class Article implements Serializable {
 
     public void setArticleName(String articleName) {
         this.articleName = articleName == null ? null : articleName.trim();
+    }
+
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUserSkillId() {

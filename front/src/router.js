@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import articleList from '@/views/article/articleList'
+import articleDetails from '@/views/article/articleDetails'
 
 Vue.use(Router)
 
@@ -25,6 +27,30 @@ const router = new Router({
       path:'/register',
       name:'register',
       component:() => import('@/views/register')
+    },
+    {
+      path:'/articleList',
+      name:'articleList',
+      meta: {
+        requireAuth: true
+      },
+      component:articleList
+    },
+    {
+      path:'/articleDetails',
+      name:'articleDetails',
+      meta: {
+        requireAuth: true
+      },
+      component:articleDetails
+    },
+    {
+      path:'*',
+      name:'home',
+      meta: {
+        requireAuth:true
+      },
+      component: Home
     }
   ]
 })

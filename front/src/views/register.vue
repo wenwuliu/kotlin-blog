@@ -86,7 +86,7 @@
                         HttpRegister(data)
                             .then(res => {
                                 if (res.code === 0) {
-                                    this.$message("注册完成，请登录")
+                                    this.$message.success("注册完成，请登录")
                                         this.$router
                                         .push({path: '/login'})
                                 }

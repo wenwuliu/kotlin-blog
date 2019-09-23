@@ -37,6 +37,7 @@ create table `skill`(
 create table `article`(
     article_id varchar(32) not null,
     article_name varchar(50) not null,
+    user_id varchar(32) not null,
     user_skill_id varchar(32) not null,
     article_content LONGTEXT not null,
     article_desc varchar(50),

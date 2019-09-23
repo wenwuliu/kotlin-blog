@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.belphegor.lifeprograminstitute.entity.Article">
     <id column="article_id" jdbcType="VARCHAR" property="articleId" />
     <result column="article_name" jdbcType="VARCHAR" property="articleName" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId"/>
     <result column="user_skill_id" jdbcType="VARCHAR" property="userSkillId" />
     <result column="article_desc" jdbcType="VARCHAR" property="articleDesc" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -14,7 +15,7 @@
     <result column="article_content" jdbcType="LONGVARCHAR" property="articleContent" />
   </resultMap>
   <sql id="Base_Column_List">
-    article_id, article_name, user_skill_id, article_desc, create_time, update_time, 
+    article_id, article_name, user_id , user_skill_id, article_desc, create_time, update_time,
     delete_flag
   </sql>
   <sql id="Blob_Column_List">
@@ -33,10 +34,10 @@
     where article_id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.belphegor.lifeprograminstitute.entity.Article">
-    insert into article (article_id, article_name, user_skill_id, 
+    insert into article (article_id, article_name, user_id, user_skill_id,
       article_desc, create_time, update_time, 
       delete_flag, article_content)
-    values (#{articleId,jdbcType=VARCHAR}, #{articleName,jdbcType=VARCHAR}, #{userSkillId,jdbcType=VARCHAR}, 
+    values (#{articleId,jdbcType=VARCHAR}, #{articleName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userSkillId,jdbcType=VARCHAR},
       #{articleDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{deleteFlag,jdbcType=INTEGER}, #{articleContent,jdbcType=LONGVARCHAR})
   </insert>
@@ -48,6 +49,9 @@
       </if>
       <if test="articleName != null">
         article_name,
+      </if>
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="userSkillId != null">
         user_skill_id,
@@ -75,6 +79,9 @@
       <if test="articleName != null">
         #{articleName,jdbcType=VARCHAR},
       </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
       <if test="userSkillId != null">
         #{userSkillId,jdbcType=VARCHAR},
       </if>
@@ -101,6 +108,9 @@
       <if test="articleName != null">
         article_name = #{articleName,jdbcType=VARCHAR},
       </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
       <if test="userSkillId != null">
         user_skill_id = #{userSkillId,jdbcType=VARCHAR},
       </if>
@@ -125,6 +135,7 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.belphegor.lifeprograminstitute.entity.Article">
     update article
     set article_name = #{articleName,jdbcType=VARCHAR},
+        user_id = #{userId,jdbcType=VARCHAR},
       user_skill_id = #{userSkillId,jdbcType=VARCHAR},
       article_desc = #{articleDesc,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -136,6 +147,7 @@
   <update id="updateByPrimaryKey" parameterType="com.belphegor.lifeprograminstitute.entity.Article">
     update article
     set article_name = #{articleName,jdbcType=VARCHAR},
+        user_id = #{userId,jdbcType=VARCHAR},
       user_skill_id = #{userSkillId,jdbcType=VARCHAR},
       article_desc = #{articleDesc,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -143,4 +155,26 @@
       delete_flag = #{deleteFlag,jdbcType=INTEGER}
     where article_id = #{articleId,jdbcType=VARCHAR}
   </update>
+  <select id="selectByUserId" resultType="com.belphegor.lifeprograminstitute.dto.ArticleDTO">
+    select article_id as articleId,article_name as articleName,article_desc as articleDesc
+    from article
+    where
+    user_id = #{userId}
+    <if test="userSkillId != null and userSkillId != ''">
+      and user_skill_id = #{userSkillId}
+    </if>
+    order by create_time desc
+    <if test="page != null">
+      limit #{page.pageIndex},#{page.pageSize}
+    </if>
+  </select>
+  <select id="selectCountByUserId" resultType="Integer">
+    select count(*)
+    from article
+    where
+    user_id = #{userId}
+    <if test="userSkillId != null and userSkillId != ''">
+      and user_skill_id = #{userSkillId}
+    </if>
+  </select>
 </mapper>

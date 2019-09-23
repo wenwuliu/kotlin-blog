@@ -1,10 +1,12 @@
 package com.belphegor.lifeprograminstitute.service.impl;
 
+import com.belphegor.common.entity.PageDTO;
 import com.belphegor.common.utils.CommonUtils;
 import com.belphegor.lifeprograminstitute.dao.ArticleDAO;
 import com.belphegor.lifeprograminstitute.dao.UserSkillDAO;
 import com.belphegor.lifeprograminstitute.dto.ArticleDTO;
 import com.belphegor.lifeprograminstitute.entity.Article;
+import com.belphegor.lifeprograminstitute.entity.User;
 import com.belphegor.lifeprograminstitute.entity.UserSkill;
 import com.belphegor.lifeprograminstitute.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class ArticleServiceImpl implements ArticleService {
     UserSkillDAO userSkillDAO;
 
     @Override
-    public boolean saveArticle(String title,String desc,String content,String userSkillId) {
+    public boolean saveArticle(String title, String desc, String content, String userSkillId, User user) {
         UserSkill userSkill = userSkillDAO.selectByPrimaryKey(userSkillId);
         userSkill.setExp(userSkill.getExp() + 1);
         int success = userSkillDAO.updateByPrimaryKey(userSkill);
@@ -31,6 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
             return false;
         }
         Article article = new Article();
+        article.setUserId(user.getUserId());
         article.setArticleName(title);
         article.setArticleContent(content);
         article.setArticleDesc(desc);
@@ -49,8 +52,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticleDTO> getArticleListByUserId(String userId) {
-        return articleDAO.selectByUserId(userId);
+    public List<ArticleDTO> getArticleListByUserId(String userId, String userSkillId, PageDTO page) {
+        return articleDAO.selectByUserId(userId,userSkillId,page);
     }
 
     @Override
@@ -67,5 +70,10 @@ public class ArticleServiceImpl implements ArticleService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Integer getArticleListCountByUserId(String userId, String userSkillId) {
+        return articleDAO.selectCountByUserId(userId,userSkillId);
     }
 }

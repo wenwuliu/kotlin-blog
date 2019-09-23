@@ -34,6 +34,9 @@
             }
         },
         methods: {
+            register(){
+              this.$router.push({path:'/register'})
+            },
             login() {
                 HttpLogin(this.loginForm)
                     .then(res => {
