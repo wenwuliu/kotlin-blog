@@ -24,31 +24,39 @@ const router = new Router({
       component: () => import('@/views/login')
     },
     {
-      path:'/register',
-      name:'register',
-      component:() => import('@/views/register')
+      path: '/register',
+      name: 'register',
+      component: () => import('@/views/register')
     },
     {
-      path:'/articleList',
-      name:'articleList',
+      path: '/articleList',
+      name: 'articleList',
       meta: {
         requireAuth: true
       },
-      component:articleList
+      component: articleList
     },
     {
-      path:'/articleDetails',
-      name:'articleDetails',
+      path: '/articleDetails',
+      name: 'articleDetails',
       meta: {
         requireAuth: true
       },
-      component:articleDetails
+      component: articleDetails
     },
     {
-      path:'*',
-      name:'home',
+      path: '/games/word',
+      name: 'gameword',
       meta: {
-        requireAuth:true
+        requireAuth: true
+      },
+      component: () => import('@/views/games/word')
+    },
+    {
+      path: '*',
+      name: 'home',
+      meta: {
+        requireAuth: true
       },
       component: Home
     }

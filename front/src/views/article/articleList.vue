@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     addArticle () {
-      this.$router.push({ name: 'articleDetails' ,params:{userSkillId:this.userSkillId}})
+      this.$router.push({ name: 'articleDetails', params: { userSkillId: this.userSkillId } })
     },
     handleCurrentChange (val) {
       this.currentPage = val
